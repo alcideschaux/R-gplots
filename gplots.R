@@ -58,6 +58,7 @@ gbox <- function(var, group, origin = data, pair = FALSE){
   w.p <- format(wilcox.test(var ~ group, paired = pair)$p.value, digits = 2)
   ymax <- max(tapply(var, group, FUN = max))
   var_q <- tapply(var, group, quantile)
+  var_q <- round(var_q, 1)
   ggplot(data = origin, aes(x = group, y = var, fill = group)) +
     geom_boxplot() +
     annotate("text", label = paste("P =", w.p), x = 1.5, y = ymax) +
